@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 import 'package:text_adventure/src/configuration/effects/inventory_effect.dart';
-import 'package:text_adventure/src/exceptions/invalid_item_id_exception.dart';
+import 'package:text_adventure/src/exceptions/invalid_item_exception.dart';
 import 'package:text_adventure/text_adventure.dart';
 
 void main() {

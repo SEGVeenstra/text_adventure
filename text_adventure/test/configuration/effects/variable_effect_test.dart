@@ -1,29 +1,99 @@
 import 'package:test/test.dart';
+import 'package:text_adventure/src/configuration/effects/variable_effect.dart';
+import 'package:text_adventure/src/configuration/variables/bool_variable.dart';
+import 'package:text_adventure/src/configuration/variables/int_variable.dart';
+import 'package:text_adventure/src/exceptions/invalid_variable_exception.dart';
+import 'package:text_adventure/text_adventure.dart';
 
 void main() {
-  group('add ', () {
-    // test('with positive number adds value to variable', () {
-    //   final progress = TextAdventureProgress(variables: {'gold': 0});
-    //   final effect = VariableEffect(variableName: 'gold', add: 100);
-    //   effect.apply(progress, [
-    //     Variable(
-    //       id: 'gold',
-    //       initialValue: 0,
-    //     ),
-    //   ]);
-    //   expect(progress.getVariable('gold'), 100);
-    // });
+  late TextAdventureSession session;
 
-    // test('with negative number removes value from variable', () {
-    //   final progress = TextAdventureProgress(variables: {'gold': 100});
-    //   final effect = VariableEffect(variableName: 'gold', add: -50);
-    //   effect.apply(progress, [
-    //     Variable(
-    //       id: 'gold',
-    //       initialValue: 0,
-    //     ),
-    //   ]);
-    //   expect(progress.getVariable('gold'), 50);
-    // });
+  setUp(() {
+    final game = TextAdventureConfiguration(
+      variables: [
+        IntVariable(id: 'health', initialValue: 100),
+        IntVariable(id: 'mana', initialValue: 0),
+        BoolVariable(id: 'lightsOn', initialValue: true),
+      ],
+      items: [],
+      locations: [],
+      meta: MetaConfiguration(
+        title: 'title',
+        version: Version(1, 0, 1),
+      ),
+    );
+    final progress = TextAdventureProgress(
+      variables: {
+        'mana': 0,
+        'lightsOn': true,
+      },
+    );
+    session = TextAdventureSession(game: game, progress: progress);
+  });
+
+  group('constructor', () {
+    test('both add and set are not set', () {
+      expect(
+        () => VariableEffect(variableName: 'health', add: 10, set: 50),
+        throwsA(isA<AssertionError>()),
+      );
+    });
+  });
+
+  group(
+    'add',
+    () {
+      test('adds value to variable not in progress', () {
+        final effect = VariableEffect(variableName: 'health', add: 10);
+        effect.apply(session);
+        expect(session.progress.getVariable('health'), 110);
+      });
+
+      test('adds value to variable already in progress', () {
+        session.progress.setVariable('health', 50);
+        final effect = VariableEffect(variableName: 'health', add: 10);
+        effect.apply(session);
+        expect(session.progress.getVariable('health'), 60);
+      });
+
+      test('throws exception for non-existent variable', () {
+        final effect = VariableEffect(variableName: 'nonExistent', add: 10);
+        expect(() => effect.apply(session),
+            throwsA(isA<InvalidVariableException>()));
+      });
+
+      test('throws exception for invalid variable type', () {
+        final effect = VariableEffect(variableName: 'lightsOn', add: 10);
+        expect(() => effect.apply(session),
+            throwsA(isA<InvalidVariableException>()));
+      });
+    },
+  );
+
+  group('set ', () {
+    test('sets value to variable not in progress', () {
+      final effect = VariableEffect(variableName: 'health', set: 50);
+      effect.apply(session);
+      expect(session.progress.getVariable('health'), 50);
+    });
+
+    test('sets value to variable already in progress', () {
+      session.progress.setVariable('health', 50);
+      final effect = VariableEffect(variableName: 'health', set: 10);
+      effect.apply(session);
+      expect(session.progress.getVariable('health'), 10);
+    });
+
+    test('throws exception for non-existent variable', () {
+      final effect = VariableEffect(variableName: 'nonExistent', set: 10);
+      expect(() => effect.apply(session),
+          throwsA(isA<InvalidVariableException>()));
+    });
+
+    test('throws exception for invalid variable type', () {
+      final effect = VariableEffect(variableName: 'lightsOn', set: 10);
+      expect(() => effect.apply(session),
+          throwsA(isA<InvalidVariableException>()));
+    });
   });
 }

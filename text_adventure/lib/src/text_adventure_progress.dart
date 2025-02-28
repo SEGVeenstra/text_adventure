@@ -27,17 +27,12 @@ class TextAdventureProgress {
   }
 
   void setVariable(String id, dynamic value) {
-    final currentValue = variables[id];
-    if (currentValue.runtimeType == value.runtimeType) {
-      throw '$value is not of type ${currentValue.runtimeType}';
-    }
     variables[id] = value;
   }
 
-  void incrementVariable(String id, dynamic value) {
-    final currentValue = variables[id];
-    if (currentValue is! num) {
-      throw '$value is not of type ${currentValue.runtimeType}';
+  void incrementVariable(String id, dynamic value, dynamic initialValue) {
+    if (!variables.containsKey(id)) {
+      variables[id] = initialValue;
     }
     variables[id] += value;
   }

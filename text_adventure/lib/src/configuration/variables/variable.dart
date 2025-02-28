@@ -1,4 +1,4 @@
-class Variable<T> {
+abstract class Variable<T> {
   Variable({
     required this.id,
     required this.initialValue,
