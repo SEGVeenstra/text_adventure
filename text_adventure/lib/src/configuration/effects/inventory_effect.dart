@@ -1,4 +1,5 @@
 import 'package:text_adventure/src/configuration/effects/effect.dart';
+import 'package:text_adventure/src/exceptions/invalid_item_id_exception.dart';
 import 'package:text_adventure/text_adventure.dart';
 
 /// An effect that modifies the player's inventory.
@@ -23,6 +24,10 @@ class InventoryEffect extends Effect {
 
   @override
   void apply(TextAdventureSession session) {
+    if (session.game.items.map((e) => e.id).contains(itemId) == false) {
+      throw InvalidItemIdException(itemId: itemId);
+    }
+
     if (add != null) {
       session.progress.addItem(itemId, add!);
     } else if (set != null) {
