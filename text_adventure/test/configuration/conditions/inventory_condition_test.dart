@@ -32,7 +32,7 @@ void main() {
 
   group('Invalid item', () {
     test('throws exception when item id is not in the game', () {
-      final condition = InventoryCondition(itemId: 'invalid', equals: 100);
+      final condition = InventoryCondition('invalid', equals: 100);
       expect(() => condition.evaluate(session),
           throwsA(isA<InvalidItemIdException>()));
     });
@@ -40,14 +40,14 @@ void main() {
 
   group('Equals', () {
     test('returns true when inventory amount equals the expected amount', () {
-      final condition = InventoryCondition(itemId: 'gold', equals: 100);
+      final condition = InventoryCondition('gold', equals: 100);
       expect(condition.evaluate(session), isTrue);
     });
 
     test(
         'returns false when inventory amount does not equal the expected amount',
         () {
-      final condition = InventoryCondition(itemId: 'gold', equals: 200);
+      final condition = InventoryCondition('gold', equals: 200);
       expect(condition.evaluate(session), isFalse);
     });
   });
@@ -56,12 +56,12 @@ void main() {
     test(
         'returns true when inventory amount does not equal the expected amount',
         () {
-      final condition = InventoryCondition(itemId: 'gold', notEquals: 200);
+      final condition = InventoryCondition('gold', notEquals: 200);
       expect(condition.evaluate(session), isTrue);
     });
 
     test('returns false when inventory amount equals the expected amount', () {
-      final condition = InventoryCondition(itemId: 'gold', notEquals: 100);
+      final condition = InventoryCondition('gold', notEquals: 100);
       expect(condition.evaluate(session), isFalse);
     });
   });
@@ -69,14 +69,14 @@ void main() {
   group('More than', () {
     test('returns true when inventory amount is more than the expected amount',
         () {
-      final condition = InventoryCondition(itemId: 'gold', moreThan: 50);
+      final condition = InventoryCondition('gold', moreThan: 50);
       expect(condition.evaluate(session), isTrue);
     });
 
     test(
         'returns false when inventory amount is not more than the expected amount',
         () {
-      final condition = InventoryCondition(itemId: 'gold', moreThan: 200);
+      final condition = InventoryCondition('gold', moreThan: 200);
       expect(condition.evaluate(session), isFalse);
     });
   });
@@ -84,14 +84,14 @@ void main() {
   group('Less than', () {
     test('returns true when inventory amount is less than the expected amount',
         () {
-      final condition = InventoryCondition(itemId: 'gold', lessThan: 200);
+      final condition = InventoryCondition('gold', lessThan: 200);
       expect(condition.evaluate(session), isTrue);
     });
 
     test(
         'returns false when inventory amount is not less than the expected amount',
         () {
-      final condition = InventoryCondition(itemId: 'gold', lessThan: 50);
+      final condition = InventoryCondition('gold', lessThan: 50);
       expect(condition.evaluate(session), isFalse);
     });
   });
@@ -100,16 +100,14 @@ void main() {
     test(
         'returns true when inventory amount is more than or equals the expected amount',
         () {
-      final condition =
-          InventoryCondition(itemId: 'gold', moreThanOrEquals: 100);
+      final condition = InventoryCondition('gold', moreThanOrEquals: 100);
       expect(condition.evaluate(session), isTrue);
     });
 
     test(
         'returns false when inventory amount is not more than or equals the expected amount',
         () {
-      final condition =
-          InventoryCondition(itemId: 'gold', moreThanOrEquals: 200);
+      final condition = InventoryCondition('gold', moreThanOrEquals: 200);
       expect(condition.evaluate(session), isFalse);
     });
   });
@@ -118,16 +116,14 @@ void main() {
     test(
         'returns true when inventory amount is less than or equals the expected amount',
         () {
-      final condition =
-          InventoryCondition(itemId: 'gold', lessThanOrEquals: 200);
+      final condition = InventoryCondition('gold', lessThanOrEquals: 200);
       expect(condition.evaluate(session), isTrue);
     });
 
     test(
         'returns false when inventory amount is not less than or equals the expected amount',
         () {
-      final condition =
-          InventoryCondition(itemId: 'gold', lessThanOrEquals: 50);
+      final condition = InventoryCondition('gold', lessThanOrEquals: 50);
       expect(condition.evaluate(session), isFalse);
     });
   });

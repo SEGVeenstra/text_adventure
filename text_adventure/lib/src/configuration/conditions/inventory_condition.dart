@@ -3,8 +3,8 @@ import 'package:text_adventure/src/exceptions/invalid_item_exception.dart';
 import 'package:text_adventure/src/text_adventure_session.dart';
 
 class InventoryCondition extends Condition {
-  InventoryCondition({
-    required this.itemId,
+  InventoryCondition(
+    this.itemId, {
     this.equals,
     this.notEquals,
     this.moreThan,
