@@ -1,3 +1,4 @@
+import 'package:text_adventure/src/configuration/conditions/condition.dart';
 import 'package:text_adventure/src/description.dart';
 
 class DescriptionConfiguration implements Description {
@@ -6,7 +7,7 @@ class DescriptionConfiguration implements Description {
     required this.text,
   });
 
-  final String? condition;
+  final Condition? condition;
   @override
   final String text;
 }

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
-import 'package:text_adventure/src/parsers/condition_parser.dart';
 import 'package:text_adventure/text_adventure.dart';
 
 class TextAdventureSessionEvent {
@@ -37,12 +36,7 @@ class TextAdventureSession {
       );
     }
     final description = locationConfig.description.where(
-      (d) =>
-          d.condition == null ||
-          ConditionParser(
-            variables: progress.variables,
-            inventory: progress.inventory,
-          ).evaluate(d.condition!),
+      (d) => d.condition == null || d.condition!.evaluate(this),
     );
     return locationConfig.copyWith(description: description.toList());
   }
@@ -55,12 +49,8 @@ class TextAdventureSession {
         game.locations.first;
 
     return locationConfig.actions
-        .where((action) => action.condition != null
-            ? ConditionParser(
-                    variables: progress.variables,
-                    inventory: progress.inventory)
-                .evaluate(action.condition!)
-            : true)
+        .where((action) =>
+            action.condition != null ? action.condition!.evaluate(this) : true)
         .toList();
   }
 

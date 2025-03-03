@@ -1,3 +1,4 @@
+import 'package:text_adventure/src/configuration/conditions/condition.dart';
 import 'package:text_adventure/src/configuration/effects/effect.dart';
 import 'package:text_adventure/text_adventure.dart';
 
@@ -18,7 +19,7 @@ class ActionConfiguration implements Action {
 
   final List<Effect> effects;
 
-  final String? condition;
+  final Condition? condition;
 
   @override
   final String? message;
