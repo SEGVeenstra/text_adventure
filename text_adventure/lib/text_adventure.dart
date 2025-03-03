@@ -17,6 +17,7 @@ export 'src/configuration/conditions/variable_condition.dart';
 export 'src/configuration/description_configuration.dart';
 export 'src/configuration/effects/effect.dart';
 export 'src/configuration/effects/inventory_effect.dart';
+export 'src/configuration/effects/multi_effect.dart';
 export 'src/configuration/effects/navigation_effect.dart';
 export 'src/configuration/effects/variable_effect.dart';
 export 'src/configuration/location_configuration.dart';

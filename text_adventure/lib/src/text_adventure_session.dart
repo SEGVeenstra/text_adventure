@@ -66,9 +66,7 @@ class TextAdventureSession {
   void performAction(Action action) {
     action as ActionConfiguration;
 
-    for (var effect in action.effects) {
-      effect.apply(this);
-    }
+    action.effect.apply(this);
 
     if (action.message != null) {
       _eventsController.add(

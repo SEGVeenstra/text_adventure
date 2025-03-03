@@ -17,9 +17,7 @@ void main() async {
               actions: [
                 ActionConfiguration(
                   label: 'go',
-                  effects: [
-                    NavigationEffect('room2'),
-                  ],
+                  effect: NavigationEffect('room2'),
                   type: ActionType.navigate,
                 ),
               ],
@@ -50,9 +48,7 @@ void main() async {
     () {
       final action = ActionConfiguration(
         label: 'go',
-        effects: [
-          NavigationEffect('non-existing-location'),
-        ],
+        effect: NavigationEffect('non-existing-location'),
         type: ActionType.navigate,
       );
 
@@ -70,9 +66,7 @@ void main() async {
     () {
       final action = ActionConfiguration(
         label: 'go',
-        effects: [
-          NavigationEffect('room2'),
-        ],
+        effect: NavigationEffect('room2'),
         type: ActionType.navigate,
       );
 
