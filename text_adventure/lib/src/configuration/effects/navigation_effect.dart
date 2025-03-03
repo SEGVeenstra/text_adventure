@@ -1,9 +1,8 @@
-import 'package:text_adventure/src/configuration/effects/effect.dart';
 import 'package:text_adventure/src/exceptions/navigation_exception.dart';
 import 'package:text_adventure/text_adventure.dart';
 
 class NavigationEffect extends Effect {
-  NavigationEffect({required this.location});
+  NavigationEffect(this.location);
 
   final String location;
 

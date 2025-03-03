@@ -1,5 +1,4 @@
 import 'package:test/test.dart';
-import 'package:text_adventure/src/configuration/effects/navigation_effect.dart';
 import 'package:text_adventure/src/exceptions/navigation_exception.dart';
 import 'package:text_adventure/text_adventure.dart';
 
@@ -19,7 +18,7 @@ void main() async {
                 ActionConfiguration(
                   label: 'go',
                   effects: [
-                    NavigationEffect(location: 'room2'),
+                    NavigationEffect('room2'),
                   ],
                   type: ActionType.navigate,
                 ),
@@ -52,7 +51,7 @@ void main() async {
       final action = ActionConfiguration(
         label: 'go',
         effects: [
-          NavigationEffect(location: 'non-existing-location'),
+          NavigationEffect('non-existing-location'),
         ],
         type: ActionType.navigate,
       );
@@ -72,7 +71,7 @@ void main() async {
       final action = ActionConfiguration(
         label: 'go',
         effects: [
-          NavigationEffect(location: 'room2'),
+          NavigationEffect('room2'),
         ],
         type: ActionType.navigate,
       );

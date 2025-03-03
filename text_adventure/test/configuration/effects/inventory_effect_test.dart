@@ -1,5 +1,4 @@
 import 'package:test/test.dart';
-import 'package:text_adventure/src/configuration/effects/inventory_effect.dart';
 import 'package:text_adventure/src/exceptions/invalid_item_exception.dart';
 import 'package:text_adventure/text_adventure.dart';
 
@@ -29,7 +28,7 @@ void main() {
     'invalid name',
     () {
       test('throws exception when item id is not in the game', () {
-        final effect = InventoryEffect(itemId: 'invalid', add: 10);
+        final effect = InventoryEffect('invalid', add: 10);
         expect(() => effect.apply(session),
             throwsA(isA<InvalidItemIdException>()));
       });
@@ -41,14 +40,14 @@ void main() {
     () {
       test('throws exception when both add and set are provided', () {
         expect(
-          () => InventoryEffect(itemId: 'gold', add: 1, set: 1),
+          () => InventoryEffect('gold', add: 1, set: 1),
           throwsA(isA<AssertionError>()),
         );
       });
 
       test('throws exception when neither add nor set are provided', () {
         expect(
-          () => InventoryEffect(itemId: 'gold'),
+          () => InventoryEffect('gold'),
           throwsA(isA<AssertionError>()),
         );
       });
@@ -57,13 +56,13 @@ void main() {
 
   group('add ', () {
     test('with positive number adds item to inventory', () {
-      final effect = InventoryEffect(itemId: 'gold', add: 10);
+      final effect = InventoryEffect('gold', add: 10);
       effect.apply(session);
       expect(session.progress.inventory['gold'], 110);
     });
 
     test('with negative number subtracts item from inventory', () {
-      final effect = InventoryEffect(itemId: 'gold', add: -5);
+      final effect = InventoryEffect('gold', add: -5);
       effect.apply(session);
       expect(session.progress.inventory['gold'], 95);
     });
@@ -73,7 +72,7 @@ void main() {
     test(
         'when item is not in inventory sets the number of items in the inventory',
         () {
-      final effect = InventoryEffect(itemId: 'diamond', set: 10);
+      final effect = InventoryEffect('diamond', set: 10);
       effect.apply(session);
       expect(session.progress.inventory['diamond'], 10);
     });
@@ -81,7 +80,7 @@ void main() {
     test(
         'when item is already in inventory, overrides the number of items in the inventory',
         () {
-      final effect = InventoryEffect(itemId: 'gold', set: 8);
+      final effect = InventoryEffect('gold', set: 8);
       effect.apply(session);
       expect(session.progress.inventory['gold'], 8);
     });

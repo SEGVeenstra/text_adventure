@@ -1,12 +1,11 @@
 import 'package:collection/collection.dart';
-import 'package:text_adventure/src/configuration/effects/effect.dart';
 import 'package:text_adventure/src/configuration/variables/bool_variable.dart';
 import 'package:text_adventure/src/configuration/variables/int_variable.dart';
 import 'package:text_adventure/src/exceptions/invalid_variable_exception.dart';
 import 'package:text_adventure/text_adventure.dart';
 
 class VariableEffect<T> extends Effect {
-  VariableEffect({required this.variableName, this.set, this.add}) {
+  VariableEffect(this.variableName, {this.set, this.add}) {
     assert(set != null || add != null);
     assert(set == null || add == null);
   }

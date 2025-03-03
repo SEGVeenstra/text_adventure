@@ -1,4 +1,3 @@
-import 'package:text_adventure/src/configuration/effects/navigation_effect.dart';
 import 'package:text_adventure/text_adventure.dart';
 
 void main() {
@@ -13,7 +12,7 @@ void main() {
         ActionConfiguration(
           label: 'To room B',
           effects: [
-            NavigationEffect(location: 'roomB'),
+            NavigationEffect('roomB'),
           ],
           type: ActionType.navigate,
         ),
@@ -30,7 +29,7 @@ void main() {
           type: ActionType.navigate,
           label: 'To room A',
           effects: [
-            NavigationEffect(location: 'roomA'),
+            NavigationEffect('roomA'),
           ],
         ),
       ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:text_adventure_flutter/example_game.dart';
-import 'package:text_adventure_flutter/example_mistery.dart';
 import 'package:text_adventure_flutter/game_meta_page.dart';
 
 class GameCollectionPage extends StatelessWidget {
@@ -19,11 +18,6 @@ class GameCollectionPage extends StatelessWidget {
             title: const Text('Example'),
             onTap: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => GameMetaPage(game: exampleGame))),
-          ),
-          ListTile(
-            title: const Text('Mistery'),
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => GameMetaPage(game: misteryExample))),
           ),
         ],
       ),

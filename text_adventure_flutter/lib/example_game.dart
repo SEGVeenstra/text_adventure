@@ -5,7 +5,16 @@ final exampleGame = TextAdventureConfiguration(
     title: 'Example',
     version: Version(1, 0, 0),
   ),
-  variables: [],
+  variables: [
+    BoolVariable(
+      id: 'hall_light',
+      initialValue: false,
+    ),
+    BoolVariable(
+      id: 'pushed_button',
+      initialValue: false,
+    ),
+  ],
   items: [
     Item(
       id: 'key',
@@ -25,42 +34,51 @@ final exampleGame = TextAdventureConfiguration(
       description: [
         DescriptionConfiguration(
           text: 'It\'s a bit dark in here.',
-          condition: '!vars.hall_light',
+          condition: VariableCondition('hall_light', equals: false),
         ),
         DescriptionConfiguration(
           text: 'The hallway is well lit.',
-          condition: 'vars.hall_light',
+          condition: VariableCondition('hall_light', equals: true),
         ),
       ],
       actions: [
         ActionConfiguration(
           type: ActionType.navigate,
           label: 'To the living room',
-          condition: 'vars.hall_light',
-          effect: 'location = living',
+          condition: VariableCondition('hall_light', equals: true),
+          effects: [
+            NavigationEffect('living'),
+          ],
         ),
         ActionConfiguration(
-          type: ActionType.use,
-          label: 'Turn on the light',
-          condition: '!vars.hall_light',
-          effect: 'vars.hall_light = true',
-        ),
+            type: ActionType.use,
+            label: 'Turn on the light',
+            condition: VariableCondition('hall_light', equals: false),
+            effects: [
+              VariableEffect('hall_light', set: true),
+            ]),
         ActionConfiguration(
           type: ActionType.use,
           label: 'Turn off the light',
-          condition: 'vars.hall_light',
-          effect: 'vars.hall_light = false',
+          condition: VariableCondition('hall_light', equals: true),
+          effects: [
+            VariableEffect('hall_light', set: false),
+          ],
         ),
         ActionConfiguration(
           type: ActionType.use,
           label: 'Add gold',
-          effect: 'inventory.gold++',
+          effects: [
+            InventoryEffect('gold', add: 1),
+          ],
         ),
         ActionConfiguration(
           type: ActionType.use,
           label: 'Remove gold',
-          condition: 'inventory.gold > 0',
-          effect: 'inventory.gold--',
+          condition: InventoryCondition('gold', moreThan: 0),
+          effects: [
+            InventoryEffect('gold', remove: 1),
+          ],
         ),
       ],
     ),
@@ -74,12 +92,16 @@ final exampleGame = TextAdventureConfiguration(
         ActionConfiguration(
           type: ActionType.navigate,
           label: 'To the hallway',
-          effect: 'location = hall',
+          effects: [
+            NavigationEffect('hall'),
+          ],
         ),
         ActionConfiguration(
           label: 'Push mysterious button',
-          condition: '!vars.pushed_button',
-          effect: 'vars.pushed_button = true',
+          condition: VariableCondition('pushed_button', equals: false),
+          effects: [
+            VariableEffect('pushed_button', set: true),
+          ],
           type: ActionType.use,
           message:
               "You hear a click from the kitchen door and the light on the lock turns green.",
@@ -87,8 +109,10 @@ final exampleGame = TextAdventureConfiguration(
         ActionConfiguration(
           type: ActionType.navigate,
           label: 'To the kitchen',
-          condition: 'vars.pushed_button',
-          effect: 'location = kitchen',
+          condition: VariableCondition('pushed_button', equals: true),
+          effects: [
+            NavigationEffect('kitchen'),
+          ],
         ),
       ],
     ),
@@ -103,19 +127,25 @@ final exampleGame = TextAdventureConfiguration(
         ActionConfiguration(
           type: ActionType.navigate,
           label: 'To the living room',
-          effect: 'location = living',
+          effects: [
+            NavigationEffect('living'),
+          ],
         ),
         ActionConfiguration(
           type: ActionType.use,
           label: 'Add key to inventory',
-          condition: '!inventory.key',
-          effect: 'inventory.key = 1',
+          condition: InventoryCondition('key', equals: 0),
+          effects: [
+            InventoryEffect('key', add: 1),
+          ],
         ),
         ActionConfiguration(
           type: ActionType.use,
           label: 'Remove key from inventory',
-          condition: 'inventory.key',
-          effect: 'inventory.key = null',
+          condition: InventoryCondition('key', moreThan: 0),
+          effects: [
+            InventoryEffect('key', set: 0),
+          ],
         ),
       ],
     ),

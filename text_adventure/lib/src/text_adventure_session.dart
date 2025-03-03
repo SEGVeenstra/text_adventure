@@ -55,10 +55,12 @@ class TextAdventureSession {
   }
 
   Map<Item, int> get inventory {
-    return progress.inventory.map((itemId, count) {
-      final item = game.items.firstWhere((item) => item.id == itemId);
-      return MapEntry(item, count);
-    });
+    return Map.fromEntries(
+      progress.inventory.entries.where((entry) => entry.value > 0).map((entry) {
+        final item = game.items.firstWhere((item) => item.id == entry.key);
+        return MapEntry(item, entry.value);
+      }),
+    );
   }
 
   void performAction(Action action) {
