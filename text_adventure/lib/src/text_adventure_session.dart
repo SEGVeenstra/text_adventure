@@ -1,14 +1,8 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
+import 'package:text_adventure/src/events/text_adventure_event.dart';
 import 'package:text_adventure/text_adventure.dart';
-
-class TextAdventureSessionEvent {
-  const TextAdventureSessionEvent({
-    required this.message,
-  });
-  final String message;
-}
 
 class TextAdventureSession {
   TextAdventureSession({
@@ -18,9 +12,8 @@ class TextAdventureSession {
 
   final TextAdventureConfiguration game;
   TextAdventureProgress progress;
-  final _eventsController =
-      StreamController<TextAdventureSessionEvent>.broadcast();
-  Stream<TextAdventureSessionEvent> get events => _eventsController.stream;
+  final _eventsController = StreamController<TextAdventureEvent>.broadcast();
+  Stream<TextAdventureEvent> get events => _eventsController.stream;
 
   void loadProgress(TextAdventureProgress progress) {
     this.progress = progress;
@@ -66,14 +59,16 @@ class TextAdventureSession {
   void performAction(Action action) {
     action as ActionConfiguration;
 
-    action.effect.apply(this);
-
+    // If the action has a message, emit this first
     if (action.message != null) {
       _eventsController.add(
-        TextAdventureSessionEvent(
+        TextAdventureEvent(
           message: action.message!,
         ),
       );
     }
+
+    // Then apply the effect
+    action.effect.apply(this);
   }
 }
