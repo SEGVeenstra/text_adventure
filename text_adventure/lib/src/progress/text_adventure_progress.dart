@@ -12,7 +12,10 @@ class TextAdventureProgress with TextAdventureProgressMappable {
         inventory = inventory ?? {},
         variables = variables ?? {};
 
-  @MappableField(key: 'currentLocationId')
+  static final fromMap = TextAdventureProgressMapper.fromMap;
+  static final fromJson = TextAdventureProgressMapper.fromJson;
+
+  @MappableField(key: 'location')
   String? _currentLocationId;
 
   @MappableField(key: 'inventory')

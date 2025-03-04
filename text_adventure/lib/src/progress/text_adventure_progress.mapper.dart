@@ -25,7 +25,7 @@ class TextAdventureProgressMapper
       v._currentLocationId;
   static const Field<TextAdventureProgress, String> _f$_currentLocationId =
       Field('_currentLocationId', _$_currentLocationId,
-          key: r'currentLocationId', opt: true);
+          key: r'location', opt: true);
   static Map<String, int> _$inventory(TextAdventureProgress v) => v.inventory;
   static const Field<TextAdventureProgress, Map<String, int>> _f$inventory =
       Field('inventory', _$inventory, opt: true);

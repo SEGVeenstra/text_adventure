@@ -524,10 +524,10 @@
       "languageVersion": "3.6"
     }
   ],
-  "generated": "2025-03-04T18:47:04.075024Z",
+  "generated": "2025-03-04T19:04:21.886473Z",
   "generator": "pub",
-  "generatorVersion": "3.7.0",
-  "flutterRoot": "file:///Users/segveenstra/fvm/versions/3.29.0",
-  "flutterVersion": "3.29.0",
+  "generatorVersion": "3.6.1",
+  "flutterRoot": "file:///Users/segveenstra/fvm/versions/3.27.3",
+  "flutterVersion": "3.27.3",
   "pubCache": "file:///Users/segveenstra/.pub-cache"
 }

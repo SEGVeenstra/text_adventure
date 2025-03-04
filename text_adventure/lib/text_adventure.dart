@@ -29,7 +29,7 @@ export 'src/configuration/variables/variable.dart';
 export 'src/description.dart';
 export 'src/item.dart';
 export 'src/location.dart';
-export 'src/text_adventure_progress.dart';
+export 'src/progress/text_adventure_progress.dart';
 export 'src/text_adventure_session.dart';
 
 // TODO: Export any libraries intended for clients of this package.
