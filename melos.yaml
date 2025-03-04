@@ -1,0 +1,14 @@
+name: text_adventure
+
+sdk: .fvm/flutter_sdk
+
+packages:
+  - text_adventure
+
+scripts:
+  generate:
+    description: Run code generation
+    exec: dart run build_runner build --delete-conflicting-outputs
+    packageFilters:
+      dependsOn: build_runner
+      scope: '*'

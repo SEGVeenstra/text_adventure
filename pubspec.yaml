@@ -1,0 +1,11 @@
+name: text_adventure_root
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+workspace:
+  - text_adventure
+
+dev_dependencies:
+  melos: ^6.3.2
