@@ -11,7 +11,7 @@ void main() {
       actions: [
         ActionConfiguration(
           label: 'To room B',
-          effect: NavigationEffect('roomB'),
+          effect: [NavigationEffect('roomB')],
           type: ActionType.navigate,
         ),
       ],
@@ -26,7 +26,7 @@ void main() {
         ActionConfiguration(
           type: ActionType.navigate,
           label: 'To room A',
-          effect: NavigationEffect('roomA'),
+          effect: [NavigationEffect('roomA')],
         ),
       ],
     ),

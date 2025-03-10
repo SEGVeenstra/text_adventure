@@ -56,19 +56,16 @@ class TextAdventureSession {
     );
   }
 
+  void emitEvent(TextAdventureEvent event) {
+    _eventsController.add(event);
+  }
+
   void performAction(Action action) {
     action as ActionConfiguration;
 
-    // If the action has a message, emit this first
-    if (action.message != null) {
-      _eventsController.add(
-        TextAdventureEvent(
-          message: action.message!,
-        ),
-      );
+    // Then apply the effects
+    for (final effect in action.effect) {
+      effect.apply(this);
     }
-
-    // Then apply the effect
-    action.effect.apply(this);
   }
 }

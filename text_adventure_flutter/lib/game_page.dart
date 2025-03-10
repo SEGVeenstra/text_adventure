@@ -27,7 +27,7 @@ class _GamePageState extends State<GamePage> {
   void initState() {
     super.initState();
     _eventsSubscription = session.events.listen((event) async {
-      if (mounted) {
+      if (event is MessageEvent && mounted) {
         await _showDialog(
           context,
           'Event',

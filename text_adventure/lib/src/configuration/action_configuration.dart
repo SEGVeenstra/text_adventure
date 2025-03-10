@@ -6,7 +6,6 @@ class ActionConfiguration implements Action {
     required this.effect,
     required this.type,
     this.condition,
-    this.message,
   });
 
   @override
@@ -15,10 +14,7 @@ class ActionConfiguration implements Action {
   @override
   final ActionType type;
 
-  final Effect effect;
+  final List<Effect> effect;
 
   final Condition? condition;
-
-  @override
-  final String? message;
 }

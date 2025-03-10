@@ -1,4 +1,3 @@
-import 'package:text_adventure/src/configuration/conditions/condition.dart';
 import 'package:text_adventure/text_adventure.dart';
 
 class AndCondition extends Condition {
