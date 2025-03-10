@@ -5,27 +5,28 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "text_game",
-            "cwd": "text_game",
+            "name": "text_adventure",
+            "cwd": "text_adventure",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "text_game_flutter",
-            "cwd": "text_game_flutter",
+            "name": "text_adventure_flutter",
+            "cwd": "text_adventure_flutter",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "program": "lib/main.dart"
         },
         {
-            "name": "text_game_flutter (profile mode)",
-            "cwd": "text_game_flutter",
+            "name": "text_adventure_flutter (profile mode)",
+            "cwd": "text_adventure_flutter",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "text_game_flutter (release mode)",
-            "cwd": "text_game_flutter",
+            "name": "text_adventure_flutter (release mode)",
+            "cwd": "text_adventure_flutter",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

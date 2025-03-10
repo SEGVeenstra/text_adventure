@@ -1,5 +1,4 @@
 import 'package:test/test.dart';
-import 'package:text_adventure/src/configuration/conditions/inventory_condition.dart';
 import 'package:text_adventure/src/exceptions/invalid_item_exception.dart';
 import 'package:text_adventure/text_adventure.dart';
 

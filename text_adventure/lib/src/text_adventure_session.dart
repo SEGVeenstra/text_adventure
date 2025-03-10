@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
-import 'package:text_adventure/src/events/text_adventure_event.dart';
 import 'package:text_adventure/text_adventure.dart';
 
 class TextAdventureSession {
@@ -67,5 +66,7 @@ class TextAdventureSession {
     for (final effect in action.effect) {
       effect.apply(this);
     }
+
+    emitEvent(ProgressUpdateEvent());
   }
 }

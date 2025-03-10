@@ -27,19 +27,14 @@ class _GamePageState extends State<GamePage> {
   void initState() {
     super.initState();
     _eventsSubscription = session.events.listen((event) async {
-      if (event is MessageEvent && mounted) {
-        await _showDialog(
-          context,
-          'Event',
-          event.message,
-        );
+      switch (event) {
+        case MessageEvent(:final message):
+          if (mounted) {
+            await _showDialog(context, 'Event', message);
+          }
+        case ProgressUpdateEvent():
+          setState(() {});
       }
-    });
-  }
-
-  void _performAction(Action action) {
-    setState(() {
-      session.performAction(action);
     });
   }
 
@@ -103,7 +98,7 @@ class _GamePageState extends State<GamePage> {
                             },
                           ),
                           iconAlignment: IconAlignment.end,
-                          onPressed: () => _performAction(action),
+                          onPressed: () => session.performAction(action),
                         ),
                       )
                       .toList(),
