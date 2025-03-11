@@ -35,12 +35,12 @@ void main() {
   final game = TextAdventureConfiguration(
     meta: MetaConfiguration(
       title: 'Test',
-      version: Version(1, 0, 0),
+      version: 1,
     ),
     locations: locations,
     variables: [],
     items: [
-      Item(id: 'key', name: 'Key', description: 'A key'),
+      InventoryItem(id: 'key', name: 'Key', description: 'A key'),
     ],
   );
   final session = TextAdventureSession(

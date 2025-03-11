@@ -22,7 +22,7 @@ class GameMetaPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(game.meta.description),
+              Text(game.meta.description ?? ''),
               Text('Made by: ${game.meta.author}'),
               Text('version: ${game.meta.version}'),
               Spacer(),

@@ -9,13 +9,13 @@ void main() {
     final game = TextAdventureConfiguration(
       variables: [],
       items: [
-        Item(id: 'gold', name: 'Gold', description: 'Gold'),
-        Item(id: 'diamond', name: 'Diamond', description: 'Diamonds'),
+        InventoryItem(id: 'gold', name: 'Gold', description: 'Gold'),
+        InventoryItem(id: 'diamond', name: 'Diamond', description: 'Diamonds'),
       ],
       locations: [],
       meta: MetaConfiguration(
         title: 'title',
-        version: Version(1, 0, 1),
+        version: 1,
       ),
     );
     final progress = TextAdventureProgress(

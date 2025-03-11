@@ -46,7 +46,7 @@ class TextAdventureSession {
         .toList();
   }
 
-  Map<Item, int> get inventory {
+  Map<InventoryItem, int> get inventory {
     return Map.fromEntries(
       progress.inventory.entries.where((entry) => entry.value > 0).map((entry) {
         final item = game.items.firstWhere((item) => item.id == entry.key);

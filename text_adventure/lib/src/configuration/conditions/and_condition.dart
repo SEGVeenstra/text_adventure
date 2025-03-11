@@ -1,8 +1,16 @@
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:text_adventure/text_adventure.dart';
 
-class AndCondition extends Condition {
+part 'and_condition.mapper.dart';
+
+@MappableClass(discriminatorValue: 'and')
+class AndCondition extends Condition with AndConditionMappable {
   AndCondition(this.conditions);
 
+  static final fromMap = AndConditionMapper.fromMap;
+  static final fromJson = AndConditionMapper.fromJson;
+
+  @MappableField(key: 'conditions')
   final List<Condition> conditions;
 
   @override

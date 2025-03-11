@@ -1,5 +1,8 @@
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:text_adventure/src/exceptions/invalid_item_exception.dart';
 import 'package:text_adventure/text_adventure.dart';
+
+part 'inventory_effect.mapper.dart';
 
 /// An effect that modifies the player's inventory.
 ///
@@ -8,7 +11,8 @@ import 'package:text_adventure/text_adventure.dart';
 /// If [remove] is not `null`, the effect will remove [remove] items of [itemId] from the player's inventory.
 ///
 /// Only one of [add], [set], or [remove] must be provided.
-class InventoryEffect extends Effect {
+@MappableClass(discriminatorValue: 'inventory')
+class InventoryEffect extends Effect with InventoryEffectMappable {
   InventoryEffect(
     this.itemId, {
     this.add,
@@ -21,9 +25,19 @@ class InventoryEffect extends Effect {
         1);
   }
 
+  static final fromMap = InventoryEffectMapper.fromMap;
+  static final fromJson = InventoryEffectMapper.fromJson;
+
+  @MappableField(key: 'itemId')
   final String itemId;
+
+  @MappableField(key: 'add')
   final int? add;
+
+  @MappableField(key: 'set')
   final int? set;
+
+  @MappableField(key: 'remove')
   final int? remove;
 
   @override

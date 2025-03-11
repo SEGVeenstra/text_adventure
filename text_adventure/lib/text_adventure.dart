@@ -30,7 +30,7 @@ export 'src/description.dart';
 export 'src/events/message_event.dart';
 export 'src/events/progress_update_event.dart';
 export 'src/events/text_adventure_event.dart';
-export 'src/item.dart';
+export 'src/inventory_item.dart';
 export 'src/location.dart';
 export 'src/progress/text_adventure_progress.dart';
 export 'src/text_adventure_session.dart';

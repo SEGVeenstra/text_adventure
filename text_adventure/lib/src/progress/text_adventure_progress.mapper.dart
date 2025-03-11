@@ -21,10 +21,10 @@ class TextAdventureProgressMapper
   @override
   final String id = 'TextAdventureProgress';
 
-  static String? _$currentLocationId(TextAdventureProgress v) =>
-      v.currentLocationId;
-  static const Field<TextAdventureProgress, String> _f$currentLocationId =
-      Field('currentLocationId', _$currentLocationId,
+  static String? _$_currentLocationId(TextAdventureProgress v) =>
+      v._currentLocationId;
+  static const Field<TextAdventureProgress, String> _f$_currentLocationId =
+      Field('_currentLocationId', _$_currentLocationId,
           key: r'location', opt: true);
   static Map<String, int> _$inventory(TextAdventureProgress v) => v.inventory;
   static const Field<TextAdventureProgress, Map<String, int>> _f$inventory =
@@ -36,14 +36,16 @@ class TextAdventureProgressMapper
 
   @override
   final MappableFields<TextAdventureProgress> fields = const {
-    #currentLocationId: _f$currentLocationId,
+    #_currentLocationId: _f$_currentLocationId,
     #inventory: _f$inventory,
     #variables: _f$variables,
   };
+  @override
+  final bool ignoreNull = true;
 
   static TextAdventureProgress _instantiate(DecodingData data) {
     return TextAdventureProgress(
-        currentLocationId: data.dec(_f$currentLocationId),
+        currentLocationId: data.dec(_f$_currentLocationId),
         inventory: data.dec(_f$inventory),
         variables: data.dec(_f$variables));
   }
@@ -145,7 +147,7 @@ class _TextAdventureProgressCopyWithImpl<$R, $Out>
   @override
   TextAdventureProgress $make(CopyWithData data) => TextAdventureProgress(
       currentLocationId:
-          data.get(#currentLocationId, or: $value.currentLocationId),
+          data.get(#currentLocationId, or: $value._currentLocationId),
       inventory: data.get(#inventory, or: $value.inventory),
       variables: data.get(#variables, or: $value.variables));
 

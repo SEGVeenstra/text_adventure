@@ -16,7 +16,7 @@ void main() {
       locations: [],
       meta: MetaConfiguration(
         title: 'title',
-        version: Version(1, 0, 1),
+        version: 1,
       ),
     );
     final progress = TextAdventureProgress(

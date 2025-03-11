@@ -33,7 +33,7 @@ void main() async {
           variables: [],
           meta: MetaConfiguration(
             title: 'title',
-            version: Version(1, 0, 1),
+            version: 1,
           ),
         ),
         progress: TextAdventureProgress(

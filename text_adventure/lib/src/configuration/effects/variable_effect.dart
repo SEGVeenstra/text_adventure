@@ -1,15 +1,27 @@
 import 'package:collection/collection.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:text_adventure/src/exceptions/invalid_variable_exception.dart';
 import 'package:text_adventure/text_adventure.dart';
 
-class VariableEffect<T> extends Effect {
+part 'variable_effect.mapper.dart';
+
+@MappableClass(discriminatorValue: 'variable')
+class VariableEffect<T> extends Effect with VariableEffectMappable {
   VariableEffect(this.variableName, {this.set, this.add}) {
     assert(set != null || add != null);
     assert(set == null || add == null);
   }
 
+  static final fromMap = VariableEffectMapper.fromMap;
+  static final fromJson = VariableEffectMapper.fromJson;
+
+  @MappableField(key: 'variableName')
   final String variableName;
+
+  @MappableField(key: 'set')
   final T? set;
+
+  @MappableField(key: 'add')
   final T? add;
 
   @override

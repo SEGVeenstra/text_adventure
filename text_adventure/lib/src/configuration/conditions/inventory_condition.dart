@@ -1,8 +1,12 @@
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:text_adventure/src/configuration/conditions/condition.dart';
 import 'package:text_adventure/src/exceptions/invalid_item_exception.dart';
 import 'package:text_adventure/src/text_adventure_session.dart';
 
-class InventoryCondition extends Condition {
+part 'inventory_condition.mapper.dart';
+
+@MappableClass(discriminatorValue: 'inventory')
+class InventoryCondition extends Condition with InventoryConditionMappable {
   InventoryCondition(
     this.itemId, {
     this.equals,
@@ -32,13 +36,29 @@ class InventoryCondition extends Condition {
       'Only one condition can be provided',
     );
   }
+
+  static final fromMap = InventoryConditionMapper.fromMap;
+  static final fromJson = InventoryConditionMapper.fromJson;
+
+  @MappableField(key: 'itemId')
   final String itemId;
 
+  @MappableField(key: 'equals')
   final int? equals;
+
+  @MappableField(key: 'notEquals')
   final int? notEquals;
+
+  @MappableField(key: 'moreThan')
   final int? moreThan;
+
+  @MappableField(key: 'lessThan')
   final int? lessThan;
+
+  @MappableField(key: 'moreThanOrEquals')
   final int? moreThanOrEquals;
+
+  @MappableField(key: 'lessThanOrEquals')
   final int? lessThanOrEquals;
 
   @override

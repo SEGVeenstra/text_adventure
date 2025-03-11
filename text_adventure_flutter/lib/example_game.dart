@@ -3,7 +3,7 @@ import 'package:text_adventure/text_adventure.dart';
 final exampleGame = TextAdventureConfiguration(
   meta: MetaConfiguration(
     title: 'Example',
-    version: Version(1, 0, 0),
+    version: 1,
   ),
   variables: [
     BoolVariable(
@@ -16,12 +16,12 @@ final exampleGame = TextAdventureConfiguration(
     ),
   ],
   items: [
-    Item(
+    InventoryItem(
       id: 'key',
       name: 'Key',
       description: 'A key you found in the kitchen.\nWhat could it be for?',
     ),
-    Item(
+    InventoryItem(
       id: 'gold',
       name: 'Gold',
       description: 'Shiny gold coin(s).',
